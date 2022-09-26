@@ -1,7 +1,17 @@
-from xml.dom.minidom import Element
 from rest_framework import serializers
+from .models import Category, Element, Type
 
 class ElementSerializer(serializers.ModelSerializer):
     class Meta:
         model = Element
-        field = '__all__'
+        fields = '__all__'
+
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = '__all__'
+
+class TypeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Type
+        fields = '__all__'
