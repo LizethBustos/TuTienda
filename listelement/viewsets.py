@@ -14,14 +14,20 @@ class TypeViewSet(viewsets.ModelViewSet):
     queryset = Type.objects.all()
     serializer_class = TypeSerializer
 
+    @action(detail=True, methods=['post'])
+    def elements(self, request, pk=None):
+        queryset = Element.objects.filter(type_id=pk)
+        serializer = ElementSerializer(queryset, many=True)
+        return Response(serializer.data)
+
 class CategoryViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
 
-@action(detail=True, methods=['post'])
+    @action(detail=True, methods=['post'])
     def elements(self, request, pk=None):
-        queryset = Element.objects.all()
-        serializer = ElementSerializer(queryset)
+        queryset = Element.objects.filter(category_id=pk)
+        serializer = ElementSerializer(queryset, many=True)
         return Response(serializer.data)
 
     def list(self, request):
@@ -35,6 +41,6 @@ class CategoryViewSet(viewsets.ModelViewSet):
         serializer = CategorySerializer(user)
         return Response(serializer.data)
 
-#hola soy Liz
+
 
 
