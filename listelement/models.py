@@ -23,6 +23,15 @@ class Element(models.Model):
     descripcion = models.TextField()
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     type = models.ForeignKey(Type, on_delete=models.CASCADE)
+    
     def __str__(self):
         return self.title
 
+class ElementImages(models.Model):
+    element = models.ForeignKey(Element,on_delete=models.CASCADE)
+    title = models.CharField(max_length=255)
+    cover = models.ImageField(Upload_to='images/')
+
+
+    def __str__(self):
+        return self.tittle
