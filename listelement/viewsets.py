@@ -28,3 +28,5 @@ class CategoryViewSet(viewsets.ModelViewSet):
         user = get_object_or_404(queryset, pk=pk)
         serializer = CategorySerializer(user)
         return Response(serializer.data)
+
+#hola soy Liz
